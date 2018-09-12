@@ -1,10 +1,3 @@
-# ### Pedestrian dead reckoning for trajectory estimation
-# Here we compare how GPS tracking compares to dead reckoning. We use a smartphone to gather real GPS and yaw attitude data. We compute (x, y) coordinates from latitude and longitude using spherical geometry, and (x, y) coordinates from yaw by calibrating our walking speed and using path integration.
-# 
-# We find that dead reckoning produces extremely reliable position estimates.
-# 
-# To further improve performance, it is possible to combine GPS and dead reckoning. We can periodically correct our dead reckoning estimates (which have a tendency to drift) using GPS (which is correct on average). A complementary or Kalman filter can be used for this purpose. 
-
 import numpy as np
 from scipy.misc import imread
 from numpy import cos, sin, pi
