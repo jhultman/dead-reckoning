@@ -1,6 +1,6 @@
 import numpy as np
-from imageio import imread
 from numpy import cos, sin, pi
+from imageio import imread
 
 
 def load_data(lati_longi_fname, yaw_fname, groundtruth_fname):
@@ -37,8 +37,8 @@ def gen_xy_from_yaw(yaw, dt, v0):
     dxdt = v0 * sin(psi0 - psiR)
     dydt = v0 * cos(psi0 - psiR)
 
-    x = np.cumsum(dt * dxdt)
-    y = np.cumsum(dt * dydt)
+    x = (dt * dxdt).cumsum()
+    y = (dt * dydt).cumsum()
     return x, y
 
 
@@ -50,9 +50,9 @@ def shift_and_scale(x0, y0, x1, y1):
     ux = x1.mean() - x0.mean()
     uy = y1.mean() - y0.mean()
 
-    alpha_x = (x1.max() - x1.min()) / (x0.max() - x0.min())
-    alpha_y = (y1.max() - y1.min()) / (y0.max() - y0.min())
+    alpha_x = (x0.max() - x0.min()) / (x1.max() - x1.min())
+    alpha_y = (y0.max() - y0.min()) / (y1.max() - y1.min())
 
-    x1 = (x1 - ux) / alpha_x
-    y1 = (y1 - uy) / alpha_y
+    x1 = alpha_x * (x1 - ux)
+    y1 = alpha_y * (y1 - uy)
     return x1, y1
