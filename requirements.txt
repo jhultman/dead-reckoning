@@ -4,7 +4,7 @@ imageio==2.4.1
 kiwisolver==1.0.1
 matplotlib==3.0.2
 numpy==1.15.4
-Pillow==5.4.1
+Pillow==6.2.2
 pyparsing==2.3.0
 python-dateutil==2.7.5
 six==1.12.0
