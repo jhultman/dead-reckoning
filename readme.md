@@ -6,4 +6,6 @@ from the magnetometer on a smartphone. We
 compare how the estimated trajectory differs
 from a GPS estimate.
 
-![Dead reckoning](./data/dead-reckoning.png)
+Requires `numpy` and `imageio`.
+
+![Dead reckoning](./dead-reckoning.png)
