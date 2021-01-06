@@ -11,19 +11,18 @@ def load_data(lat_lng_fname, yaw_fname, groundtruth_fname):
     return lat, lng, yaw, groundtruth
 
 
-def gen_xy_from_lat_lng(lat, lng, c0):
-    lat_adj = lat - lat[0];
-    lng_adj = lng - lng[0];
-    x = -lng_adj * (c0 * np.cos(lat) / 360)
-    y = +lat_adj * (c0 / 360)
+def gen_xy_from_lat_lng(lat, lng, circ):
+    lat_adj = lat - lat[0]
+    lng_adj = lng - lng[0]
+    x = -lng_adj * (circ * np.cos(lat) / 360)
+    y = +lat_adj * (circ / 360)
     return x, y
 
 
 def rotate(x, y, theta):
     c, s = np.cos(theta), np.sin(theta)
     rotation = [[c, -s], [s, c]]
-    xy = np.vstack((x.T, y.T))
-    x, y = np.dot(rotation, xy)
+    x, y = rotation @ np.c_[x, y].T
     return x, y
 
 
