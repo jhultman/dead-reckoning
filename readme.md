@@ -8,4 +8,4 @@ from a GPS estimate.
 
 Requires `numpy` and `imageio`.
 
-![Dead reckoning](./dead-reckoning.png)
+![Dead reckoning](./data/dead-reckoning.png)

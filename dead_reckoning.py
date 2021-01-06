@@ -67,21 +67,20 @@ def plot_navigation(x0, y0, x1, y1, groundtruth, img):
     for i in range(3):
         configure_axis(axarr[i], titles[i])
     fig.tight_layout()
-    plt.savefig('../images/dead-reckoning.png')
+    plt.savefig('./data/dead-reckoning.png')
 
 
 def main():
     circ = 40.075 * 1e6  # Circumference of the Earth (m)
     vel = 0.97           # Measured walking speed (m/s)
     dt = 0.02            # Interval between yaw samples (s)
-    fpaths = ['lat-lng', 'yaw', 'groundtruth']
-    fpaths = [osp.join('../data', f'{fpath}.csv') for fpath in fpaths]
+    fpaths = ['./data/lat-lng.csv', './data/yaw.csv', './data/groundtruth.csv']
     lat, lng, yaw, groundtruth = load_data(*fpaths)
     x0, y0 = gen_xy_from_lat_lng(lat, lng, circ)
-    x0, y0 = rotate(x0, y0, -pi / 9)
+    x0, y0 = rotate(x0, y0, -np.pi / 9)
     x1, y1 = gen_xy_from_yaw(yaw, dt, vel)
     x1, y1 = shift_and_scale(x0, y0, x1, y1)
-    img = imread('../data/upenn.png')
+    img = imread('./data/upenn.png')
     plot_navigation(x0, y0, x1, y1, groundtruth, img)
 
 
